@@ -1,0 +1,167 @@
+@import url('file:///C:\Users\micha\Downloads\GOTHelperEng\GOTHelperEng\GOTHelperEng\wwwroot\css\site.css');
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+input[id="logout"]{
+    background: none;
+    border: none;
+    color: white;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.fixed-table-container {
+    width: 100%;
+    height: 50%;
+    border: 1px solid black;
+    margin: 10px auto;
+    background-color: white;
+    position: relative;
+    padding-top: 30px;
+}
+
+    .fixed-table-container .buttonColumn {
+        border-bottom: 1px solid #ccc;
+        
+        text-align: center;
+        width: 0;
+    }
+
+
+.fixed-table-container .header-background {
+    background-color: #585858;
+    height: 30px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    border-bottom: 1px solid black;
+}
+
+    .fixed-table-container .fixed-table-container-inner {
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: 100%;
+    }
+
+    .fixed-table-container table {
+        background-color: white;
+        width: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .fixed-table-container th {
+        padding: 0 5px;
+        text-align: left;
+    }
+
+    
+    .fixed-table-container .first .th-inner {
+        border-left: none;
+        padding-left: 6px;
+       
+    }
+
+    .fixed-table-container .th-inner {
+        position: absolute;
+        top: 0;
+        line-height: 30px;
+        text-align: left;
+        border-left: 1px solid black;
+        padding-left: 5px;
+        margin-left: -5px;
+        color: white;
+
+    }
+
+    .fixed-table-container td + td {
+        border-left: 1px solid #ccc;
+    }
+
+    .fixed-table-container td:not(.buttonColumn) {
+        border-bottom: 1px solid #ccc;
+        padding: 5px;
+        
+        text-align: left;
+        width: 2000px;
+    }
+
+ 
+
+#registerForm label {
+    opacity: .65;
+    transform: scale(.85) translateY(-0.5rem ) translateX(0.15rem );
+}
+
+.form-control:not(input){
+    border: none;
+    display: flex;
+    
+}
+
+select.form-control, input.form-control {
+    border: 1px solid black;
+}
+
+
+.form-control:not(input) label {
+    width: 60%;
+    padding-top: 10px;
+}
+
+.text-danger.field-validation-error {
+    padding-left: 37.5%;
+}
+
+.form-group:not(input) {
+    border: none;
+    display: flex;
+}
+
+select.form-group, input.form-control {
+    border: 1px solid black;
+}
+
+
+.form-group:not(input) label {
+    width: 60%;
+    padding-top: 10px;
+}
+
+.form-group {
+    padding-bottom:10px;
+}
+
+
+header {
+    background-color: #585858;
+    color: white !important;
+}
+
+header a {
+        color: white !important;
+    }
+
+#logout {
+    color: white !important;
+}
+
+.buttons_under_table {
+   flex-direction: row;
+   text-align: right
+}
