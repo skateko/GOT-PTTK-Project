@@ -1,0 +1,113 @@
+﻿@model IEnumerable<GOTHelperEng.Models.TripApplication>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a class="btn btn-primary" asp-action="Create">Create New</a>
+    </p>
+}
+
+<div id="indexTable" class="fixed-table-container">
+    <div class="header-background"></div>
+    <div class="fixed-table-container-inner">
+<table cellspacing="0">
+    <thead>
+         <tr>
+            <th class="first">
+                <div class="th-inner">
+                    @Html.DisplayNameFor(model => model.CreationDate)
+                </div>
+            </th>
+            <th>
+                <div class="th-inner">
+                    @Html.DisplayNameFor(model => model.IsApproved)
+                </div>
+            </th>
+            <th>
+                <div class="th-inner">
+                Trip Started
+                </div>
+            </th>
+            <th>
+                <div class="th-inner">
+                Trip Ended
+                </div>
+            </th>
+             <th>
+                <div class="th-inner">
+                    @Html.DisplayNameFor(model => model.BookletId)
+                </div>
+            </th>
+            @if (User.IsInRole("Admin"))
+                    {
+                        <th>
+                            <div class="th-inner">
+                                Edit
+                            </div>
+                        </th>
+                        <th>
+                            <div class="th-inner">
+                Delete
+                </div>
+            </th>
+             }
+            <th>
+                <div class="th-inner">
+                Details
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+           @if(item.IsApproved.Value)
+            {
+             <td>
+                Zatwierdzony
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                Niezatwierdzony
+                            </td>
+                        }
+                        <td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trip.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trip.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookletId)
+            </td>
+            @if (User.IsInRole("Admin"))
+                {
+                    <td class ="buttonColumn">
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.TripApplicationId">Edit</a>
+                    </td>
+                    <td class="buttonColumn">
+                    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@item.TripApplicationId">Delete</a>
+                    </td>
+                }
+           <td class="buttonColumn">
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.TripApplicationId">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+    </div>
+</div>

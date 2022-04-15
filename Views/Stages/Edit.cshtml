@@ -1,0 +1,72 @@
+﻿@model GOTHelperEng.Models.Stage
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Stage</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="StageId" />
+            <div class="form-group">
+                <label asp-for="Length" class="control-label"></label>
+                <input asp-for="Length" class="form-control" />
+            </div>
+                            <span asp-validation-for="Length" class="text-danger"></span>
+
+            <div class="form-group">
+                <label asp-for="PointsForwards" class="control-label"></label>
+                <input asp-for="PointsForwards" class="form-control" />
+            </div>
+                <span asp-validation-for="PointsForwards" class="text-danger"></span>
+
+            <div class="form-group">
+                <label asp-for="PointsBackwards" class="control-label"></label>
+                <input asp-for="PointsBackwards" class="form-control" />
+            </div>
+                <span asp-validation-for="PointsBackwards" class="text-danger"></span>
+           
+            <div class="form-group">
+                <label asp-for="RouteDescription" class="control-label"></label>
+                <input asp-for="RouteDescription" class="form-control" />
+            </div>
+                <span asp-validation-for="RouteDescription" class="text-danger"></span>
+           
+            <div class="form-group">
+                <label asp-for="MountainRangeId" class="control-label"></label>
+                <select asp-for="MountainRangeId" class="form-control" asp-items="ViewBag.MountainRangeId"></select>
+            </div>
+                <span asp-validation-for="MountainRangeId" class="text-danger"></span>
+           
+            <div class="form-group">
+                <label asp-for="StartPointId" class="control-label"></label>
+                <select asp-for="StartPointId" class="form-control" asp-items="ViewBag.StartPointId"></select>
+            </div>
+                <span asp-validation-for="StartPointId" class="text-danger"></span>
+           
+            <div class="form-group">
+                <label asp-for="EndPointId" class="control-label"></label>
+                <select asp-for="EndPointId" class="form-control" asp-items="ViewBag.EndPointId"></select>
+            </div>
+                <span asp-validation-for="EndPointId" class="text-danger"></span>
+           
+           
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

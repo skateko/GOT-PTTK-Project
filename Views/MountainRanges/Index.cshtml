@@ -1,0 +1,89 @@
+﻿@model IEnumerable<GOTHelperEng.Models.MountainRange>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a class="btn btn-primary" asp-action="Create">Create New</a>
+    </p>
+}
+<div id="indexTable" class="fixed-table-container">
+    <div class="header-background"></div>
+    <div class="fixed-table-container-inner">
+<table cellspacing="0">
+    <thead>
+        <tr>
+            
+            <th class="first">
+                <div class="th-inner">
+                    @Html.DisplayNameFor(model => model.MountainRangeName)
+                </div>
+            </th>
+            <th>
+                <div class="th-inner">
+                    @Html.DisplayNameFor(model => model.MountainRangeAbbr)
+                </div>
+            </th>
+            <th>
+                <div class="th-inner">
+                @Html.DisplayNameFor(model => model.MountainArea)
+                </div>
+            </th>
+           
+            @if (User.IsInRole("Admin"))
+                    {
+                        <th>
+                            <div class="th-inner">
+                                Edit
+                            </div>
+                        </th>
+                        <th>
+                            <div class="th-inner">
+                Delete
+                </div>
+            </th>
+             }
+            <th>
+                <div class="th-inner">
+                Details
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MountainRangeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MountainRangeAbbr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MountainArea.MoutainAreaName)
+            </td>
+            @if (User.IsInRole("Admin"))
+                {
+                    <td class ="buttonColumn">
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.MountainRangeId">Edit</a>
+                    </td>
+                    <td class="buttonColumn">
+                    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@item.MountainRangeId">Delete</a>
+                    </td>
+                }
+           <td class="buttonColumn">
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.MountainRangeId">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+</div>
+
+</div>

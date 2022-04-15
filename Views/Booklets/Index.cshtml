@@ -1,0 +1,91 @@
+﻿@model IEnumerable<GOTHelperEng.Models.Booklet>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a class="btn btn-primary" asp-action="Create">Create New</a>
+    </p>
+}
+
+<div id="indexTable" class="fixed-table-container">
+    <div class="header-background"></div>
+    <div class="fixed-table-container-inner">
+<table cellspacing="0">
+    <thead>
+        
+        <tr>
+            <th class="first">
+                <div class="th-inner">
+                    @Html.DisplayNameFor(model => model.BookletId)
+                </div>
+            </th>
+            <th>
+                <div class="th-inner">
+                    @Html.DisplayNameFor(model => model.Tourist.TouristNumber)
+                </div>
+            </th>
+            <th>
+                <div class="th-inner">
+                @Html.DisplayNameFor(model => model.CreationDate)
+                </div>
+            </th>
+            @if (User.IsInRole("Admin"))
+                    {
+                        <th>
+                            <div class="th-inner">
+                                Edit
+                            </div>
+                        </th>
+                        <th>
+                            <div class="th-inner">
+                Delete
+                </div>
+            </th>
+             }
+            <th>
+                <div class="th-inner">
+                Details
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookletId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tourist.TouristNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            @if (User.IsInRole("Admin"))
+                {
+                    <td class ="buttonColumn">
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.BookletId">Edit</a>
+                    </td>
+                    <td class="buttonColumn">
+                    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@item.BookletId">Delete</a>
+                    </td>
+                }
+           <td class="buttonColumn">
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.BookletId">Details</a>
+            </td>
+            <td class="buttonColumn">
+                <a class="btn btn-primary" asp-controller="TripApplications" asp-action="BookletApplications" asp-route-id="@item.BookletId">Applications</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+</div>
+</div>

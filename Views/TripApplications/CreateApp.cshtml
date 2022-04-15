@@ -1,0 +1,50 @@
+﻿@model GOTHelperEng.ViewModels.TripApplicationViewModel
+
+@{
+    ViewData["Title"] = "Create Application";
+}
+
+<h1>Submit the creation of application.</h1>
+<hr />
+<div class="row">
+    @{
+        if (ViewData["DateError"] != null)
+        {
+            <p>@ViewData["DateError"]</p>
+        }
+    }
+    <div class="col-md-4">
+        <form asp-action="CreateApp">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TripStartDate" class="control-label"></label>
+                <input asp-for="TripStartDate" class="form-control" type="date" />
+            </div>
+                            <span asp-validation-for="TripStartDate" class="text-danger"></span>
+
+            <div class="form-group">
+                <label asp-for="TripEndDate" class="control-label"></label>
+                <input asp-for="TripEndDate" class="form-control" type="date" />
+            </div>
+                            <span asp-validation-for="TripEndDate" class="text-danger"></span>
+
+            <div class="form-group">
+                <label asp-for="BookletId" class="control-label"></label>
+                <input asp-for="BookletId" class="form-control" readonly="readonly" value="@ViewData["BookletID"]"/>
+            </div>
+                            <span asp-validation-for="BookletId" class="text-danger"></span>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Booklets" asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

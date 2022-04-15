@@ -1,0 +1,47 @@
+﻿@model GOTHelperEng.ViewModels.PositionViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Add Stage From Database To Trip</h1>
+
+@{
+    if (ViewData["YourLastPoint"] != null)
+    {
+        <h4>Your current Starting Point: @ViewData["YourLastPoint"]</h4>
+    }
+}
+<hr />
+<div class="row">
+    @{
+        if (ViewData["BackwardPointsErr"] != null)
+        {
+            <p>@ViewData["BackwardPointsErr"]</p>
+        }
+    }
+    <div class="col-md-4">
+        <form asp-action="CreatePos">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Direction" class="control-label"></label>
+                <select asp-for="Direction" class ="form-control" asp-items="ViewBag.Direction"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="StageId" class="control-label"></label>
+                <select asp-for="StageId" class ="form-control" asp-items="ViewBag.StageId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-primary" asp-action="AddStages" asp-controller="Trips" asp-route-id="@ViewBag.ReturnId" >Back to Adding</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,94 @@
+﻿@model IEnumerable<GOTHelperEng.Models.Position>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a class="btn btn-primary" asp-action="Create">Create New</a>
+    </p>
+}
+
+<div id="indexTable" class="fixed-table-container">
+    <div class="header-background"></div>
+    <div class="fixed-table-container-inner">
+<table cellspacing="0">
+    <thead>
+        <tr>
+            <th class="first">
+                <div class="th-inner">
+                    @Html.DisplayNameFor(model => model.StageNumber)
+                </div>
+            </th>
+            <th>
+                <div class="th-inner">
+                    @Html.DisplayNameFor(model => model.Direction)
+                </div>
+            </th>
+            <th>
+                <div class="th-inner">
+                @Html.DisplayNameFor(model => model.Trip)
+                </div>
+            </th>
+            <th>
+                <div class="th-inner">
+                @Html.DisplayNameFor(model => model.Stage)
+                </div>
+            </th>
+            @if (User.IsInRole("Admin"))
+                    {
+                        <th>
+                            <div class="th-inner">
+                                Edit
+                            </div>
+                        </th>
+                        <th>
+                            <div class="th-inner">
+                Delete
+                </div>
+            </th>
+             }
+            <th>
+                <div class="th-inner">
+                Details
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StageNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direction)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trip.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stage.StageId)
+            </td>
+            @if (User.IsInRole("Admin"))
+                {
+                    <td class ="buttonColumn">
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.PositionId">Edit</a>
+                    </td>
+                    <td class="buttonColumn">
+                    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@item.PositionId">Delete</a>
+                    </td>
+                }
+           <td class="buttonColumn">
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.PositionId">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+</div>

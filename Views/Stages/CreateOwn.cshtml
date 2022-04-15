@@ -1,0 +1,57 @@
+﻿@model GOTHelperEng.ViewModels.StageViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Add Your Own Stage To Trip</h1>
+
+@{
+    if (ViewData["YourLastPoint"] != null)
+    {
+        <h4>Your current Starting Point: @ViewData["YourLastPoint"]</h4>
+    }
+}
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateOwn">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="LengthInMeters" class="control-label"></label>
+                <input asp-for="LengthInMeters" class="form-control" />
+            </div>
+                <span asp-validation-for="LengthInMeters" class="text-danger"></span>
+            
+            <div class="form-group">
+                <label asp-for="HeightDifference" class="control-label"></label>
+                <input asp-for="HeightDifference" class="form-control" />
+            </div>
+                <span asp-validation-for="HeightDifference" class="text-danger"></span>
+            
+            <div class="form-group">
+                <label asp-for="MountainRangeId" class="control-label">Mountain Range</label>
+                <select asp-for="MountainRangeId" class ="form-control" asp-items="ViewBag.MountainRangeId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartPointId" class="control-label">Starting Point</label>
+                <select asp-for="StartPointId" class ="form-control" asp-items="ViewBag.StartPointId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndPointId" class="control-label">Ending Point</label>
+                <select asp-for="EndPointId" class ="form-control" asp-items="ViewBag.EndPointId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-primary" asp-action="AddStages" asp-controller="Trips" asp-route-id="@ViewBag.ReturnId" >Back to Adding</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

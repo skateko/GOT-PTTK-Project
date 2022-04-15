@@ -1,0 +1,46 @@
+﻿@model GOTHelperEng.ViewModels.TripViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Trip</h4>
+<hr />
+<div class="row">
+    @{
+        if (ViewData["DateError"] != null)
+        {
+            <p>@ViewData["DateError"]</p>
+        }
+    }
+    <div class="col-md-4">
+        <form asp-action="CreateTrip">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input asp-for="StartDate" class="form-control" type="date" />
+            </div>
+                            <span asp-validation-for="StartDate" class="text-danger"></span>
+
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label"></label>
+                <input asp-for="EndDate" class="form-control" type="date" />
+            </div>
+                            <span asp-validation-for="EndDate" class="text-danger"></span>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

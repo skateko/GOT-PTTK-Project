@@ -1,0 +1,145 @@
+﻿@model GOTHelperEng.Models.Trip
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Add Stages</h1>
+
+<div>
+    <h4>Trip</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Points)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Points)
+        </dd>
+    </dl>
+</div>
+
+@{
+    var positions = ViewData["Positions"] as IEnumerable<Position>;
+    if (positions.Any())
+    {
+<div id="indexTable" class="fixed-table-container">
+    <div class="header-background"></div>
+    <div class="fixed-table-container-inner">
+        <table cellspacing="0">
+        <thead>
+            <tr>
+            <th class="first">
+                <div class="th-inner">
+                    StageNumber
+                </div>
+            </th>
+            <th>
+                <div class="th-inner">
+                    Direction
+                </div>
+            </th>
+            <th>
+                <div class="th-inner">
+                Stage Description
+                </div>
+            </th>
+            <th>
+                <div class="th-inner">
+                Points Forwards
+                </div>
+            </th>
+            <th>
+                <div class="th-inner">
+                Points Backwards
+                </div>
+            </th>
+            <th>
+                <div class="th-inner">
+                Start Point
+                </div>
+            </th>
+             <th>
+                <div class="th-inner">
+                End Point
+                </div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in ViewData["Positions"] as IEnumerable<Position>) 
+        {
+            <tr>
+                <td>
+                    @item.StageNumber
+                </td>
+                @if (@item.Direction == true)
+                {
+                    <td>Tam</td>
+                }
+                else
+                {
+                    <td>Z Powrotem</td>
+                }
+                <td>
+                    @item.Stage.RouteDescription
+                </td>
+                <td>
+                    @item.Stage.PointsForwards
+                </td>
+                <td>
+                    @item.Stage.PointsBackwards
+                </td>
+                @if (@item.Direction == true)
+                {
+                    <td>
+                        @item.Stage.StartPoint.PointName
+                    </td>
+                    <td>
+                        @item.Stage.EndPoint.PointName
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @item.Stage.EndPoint.PointName
+                    </td>
+                    <td>
+                        @item.Stage.StartPoint.PointName
+                    </td>
+                }
+                </tr>
+        }
+            </tbody>
+        </table>
+            </div>
+</div>
+    }
+    else
+    {
+        <div>There are no stages assigned to this Application, add stages by using AddStages command</div>
+    }
+}
+
+<div class="buttons-under-table">
+    <input type="button" class="btn btn-primary" value="Add Known Stage" onclick="location.href='@Url.Action("CreatePos", "Positions", new { id = @Model?.TripId })'" />
+    <input type="button" class="btn btn-primary" value="Add Your Stage" onclick="location.href='@Url.Action("CreateOwn", "Stages", new { id = @Model?.TripId })'" />
+    <input type="button" class="btn btn-primary" value="Submit" onclick="location.href='@Url.Action("TripConfirmed", "Trips")'" />
+</div>
+
+<div>
+    <a asp-controller="TripApplications" asp-action="Details" asp-route-id="@ViewBag.ReturnAppId">Back to Application Details</a>
+</div>
+<!-- style="flex-direction: row; text-align: right" -->

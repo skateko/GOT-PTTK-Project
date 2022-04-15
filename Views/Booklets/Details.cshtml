@@ -1,0 +1,33 @@
+﻿@model GOTHelperEng.Models.Booklet
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Booklet</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tourist)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tourist.UserId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    @if (User.IsInRole("Admin"))
+    {
+        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.BookletId">Edit</a> <text>|</text>
+    }
+    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+</div>
